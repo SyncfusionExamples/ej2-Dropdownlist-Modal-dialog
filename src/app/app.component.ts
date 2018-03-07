@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DropDownListComponent } from '@syncfusion/ej2-ng-dropdowns/src/drop-down-list/dropdownlist.component';
 
 @Component({
   selector: 'my-app',
@@ -9,7 +10,7 @@ import { Component } from '@angular/core';
       Dropdownlist
     </div>
     <div class="app-modal-body">
-      <ej-dropdownlist id='ddlelement' #samples [dataSource]='data' (open)='onOpen($event)' [fields]='fields' [placeholder]='text'></ej-dropdownlist>
+      <ejs-dropdownlist id='ddlelement' #samples [dataSource]='data' (open)='onOpen($event)' [fields]='fields' [placeholder]='text'></ejs-dropdownlist>
     </div>
     <div class="app-modal-footer">
     </div>
@@ -34,9 +35,10 @@ export class AppComponent {
   public fields: Object = { text: 'Game', value: 'Id' };
   //set the placeholder to DropDownList input
   public text: string = "Select a game";
-
+  public dropObj : DropDownListComponent;
   onOpen(args: any) {
     let zIndex: number = parseInt(document.defaultView.getComputedStyle(document.getElementsByClassName('modal')[0]).zIndex);
-    args.popup.element.style.zIndex = zIndex + 1;
+    //this.dropObj.zIndex = zIndex + 1;
+   args.popup.element.style.zIndex = zIndex + 1;
   }
 }
