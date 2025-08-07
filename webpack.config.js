@@ -1,6 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
-var webpackMerge = require('webpack-merge');
+var { merge } = require('webpack-merge');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // Webpack Config
@@ -18,7 +18,7 @@ var webpackConfig = {
     new webpack.ContextReplacementPlugin(
       // The (\\|\/) piece accounts for path separators in *nix and Windows
       /angular(\\|\/)core(\\|\/)@angular/,
-      path.resolve(__dirname, '../src'),
+      path.resolve(__dirname, './src'),
       {
         // your Angular Async Route paths relative to this root directory
       }
@@ -31,18 +31,24 @@ var webpackConfig = {
   ],
 
   module: {
-    loaders: [
+    rules: [
       // .ts files for TypeScript
       {
         test: /\.ts$/,
-        loaders: [
-          'awesome-typescript-loader',
+        use: [
+          'ts-loader',
           'angular2-template-loader',
           'angular2-router-loader'
         ]
       },
-      { test: /\.css$/, loaders: ['to-string-loader', 'css-loader'] },
-      { test: /\.html$/, loader: 'raw-loader' }
+      { 
+        test: /\.css$/, 
+        use: ['to-string-loader', 'css-loader'] 
+      },
+      { 
+        test: /\.html$/, 
+        use: 'raw-loader' 
+      }
     ]
   }
 
@@ -51,7 +57,7 @@ var webpackConfig = {
 
 // Our Webpack Defaults
 var defaultConfig = {
-  devtool: 'source-map',
+  devtool: process.env.NODE_ENV === 'production' ? 'source-map' : 'eval-cheap-module-source-map',
 
   output: {
     filename: '[name].bundle.js',
@@ -65,8 +71,11 @@ var defaultConfig = {
   },
 
   devServer: {
+    static: {
+      directory: path.resolve(__dirname, 'src')
+    },
     historyApiFallback: true,
-    watchOptions: { aggregateTimeout: 300, poll: 1000 },
+    watchFiles: ['src/**/*'],
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
@@ -74,17 +83,15 @@ var defaultConfig = {
     }
   },
 
-  node: {
-    global: true,
-    crypto: 'empty',
-    __dirname: true,
-    __filename: true,
-    process: true,
-    Buffer: false,
-    clearImmediate: false,
-    setImmediate: false
+  resolve: {
+    extensions: ['.ts', '.js'],
+    fallback: {
+      "crypto": false,
+      "buffer": false,
+      "process": false
+    }
   }
 };
 
 
-module.exports = webpackMerge(defaultConfig, webpackConfig);
+module.exports = merge(defaultConfig, webpackConfig);
