@@ -16,67 +16,27 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> 
     
     <base href="/">
-    
     <style>
-      /* Custom modal and dropdown styles */
-      .modal {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: white;
-        padding: 30px;
-        border-radius: 8px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-        z-index: 1000;
-        min-width: 400px;
-      }
-      
-      .modal-backdrop {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.5);
-        z-index: 999;
-      }
-      
-      .app-modal-header {
-        font-weight: 600;
-        margin-bottom: 20px;
-        font-size: 18px;
-        color: #333;
-      }
-      
-      .app-modal-body {
-        margin: 20px 0;
-      }
-      
-      .e-dropdownlist {
-        width: 100% !important;
-      }
-      
-      /* Ensure dropdown popup appears above modal */
-      .e-popup {
-        z-index: 1050 !important;
-      }
-      
-      /* Button styling */
-      button {
-        background: #007bff;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 14px;
-      }
-      
-      button:hover {
-        background: #0056b3;
-      }
-    </style>
+/* Professional Button Style - 10 lines */
+button[type="button"] {
+    background: #1976d2;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+button[type="button"]:hover {
+    background: #1565c0;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(25, 118, 210, 0.3);
+}
+</style>
+  
   </head>
 <body style="margin-top:20px;">
 
