@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DropDownListComponent } from '@syncfusion/ej2-ng-dropdowns/src/drop-down-list/dropdownlist.component';
+import { DropDownListComponent } from '@syncfusion/ej2-angular-dropdowns';
 
 @Component({
   selector: 'my-app',
